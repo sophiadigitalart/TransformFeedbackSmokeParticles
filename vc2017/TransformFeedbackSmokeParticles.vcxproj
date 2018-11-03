@@ -246,7 +246,7 @@
     <ClInclude Include="..\..\..\Cinder\blocks\OSC\src\cinder\osc\Osc.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\SDAServerApp.cpp" />
+    <ClCompile Include="..\src\TransformFeedbackSmokeParticlesApp.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\src\CinderImGui.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_draw.cpp" />

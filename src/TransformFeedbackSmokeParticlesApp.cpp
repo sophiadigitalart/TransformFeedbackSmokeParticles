@@ -52,10 +52,10 @@ float mix(float x, float y, float a)
 {
 	return x * (1 - a) + y * a;
 }
-class SDAServerApp : public App {
+class TransformFeedbackSmokeParticlesApp : public App {
 
 public:
-	SDAServerApp();
+	TransformFeedbackSmokeParticlesApp();
 	void mouseMove(MouseEvent event) override;
 	void mouseDown(MouseEvent event) override;
 	void mouseDrag(MouseEvent event) override;
@@ -118,7 +118,7 @@ private:
 };
 
 
-SDAServerApp::SDAServerApp()
+TransformFeedbackSmokeParticlesApp::TransformFeedbackSmokeParticlesApp()
 	: mSpoutOut("SDAServer", app::getWindowSize()),
 	mReceiver(localPort)
 {
@@ -224,18 +224,18 @@ SDAServerApp::SDAServerApp()
 	mRenderWindowTimer = 0.0f;
 	timeline().apply(&mRenderWindowTimer, 1.0f, 2.0f).finishFn([&] { positionRenderWindow(); });
 }
-void SDAServerApp::positionRenderWindow() {
+void TransformFeedbackSmokeParticlesApp::positionRenderWindow() {
 	mSDASettings->mRenderPosXY = ivec2(mSDASettings->mRenderX, mSDASettings->mRenderY);//20141214 was 0
 	setWindowPos(mSDASettings->mRenderX, mSDASettings->mRenderY);
 	setWindowSize(mSDASettings->mRenderWidth, mSDASettings->mRenderHeight);
 }
-void SDAServerApp::loadTexture()
+void TransformFeedbackSmokeParticlesApp::loadTexture()
 {
 	gl::Texture::Format mTextureFormat;
 	mTextureFormat.magFilter(GL_LINEAR).minFilter(GL_LINEAR).mipmap().internalFormat(GL_RGBA);
 	mSmokeTexture = gl::Texture::create(loadImage(loadAsset("smoke_blur.png")), mTextureFormat);
 }
-void SDAServerApp::loadShaders()
+void TransformFeedbackSmokeParticlesApp::loadShaders()
 {
 	try {
 		// Create a vector of Transform Feedback "Varyings".
@@ -294,7 +294,7 @@ void SDAServerApp::loadShaders()
 	mPRenderGlsl->uniform("ParticleLifetime", 3.0f);
 }
 
-void SDAServerApp::loadBuffers()
+void TransformFeedbackSmokeParticlesApp::loadBuffers()
 {
 	// Initialize positions
 	std::vector<vec3> positions(nParticles, vec3(0.0f));
@@ -370,7 +370,7 @@ void SDAServerApp::loadBuffers()
 	}
 }
 
-void SDAServerApp::setUIVisibility(bool visible)
+void TransformFeedbackSmokeParticlesApp::setUIVisibility(bool visible)
 {
 	if (visible)
 	{
@@ -381,11 +381,11 @@ void SDAServerApp::setUIVisibility(bool visible)
 		hideCursor();
 	}
 }
-void SDAServerApp::fileDrop(FileDropEvent event)
+void TransformFeedbackSmokeParticlesApp::fileDrop(FileDropEvent event)
 {
 	//mSDASession->fileDrop(event);
 }
-void SDAServerApp::update()
+void TransformFeedbackSmokeParticlesApp::update()
 {
 	mSDASession->setFloatUniformValueByIndex(mSDASettings->IFPS, getAverageFps());
 	mSDASession->update();
@@ -413,7 +413,7 @@ void SDAServerApp::update()
 	gl::drawArrays(GL_POINTS, 0, nParticles);
 	gl::endTransformFeedback();
 }
-void SDAServerApp::cleanup()
+void TransformFeedbackSmokeParticlesApp::cleanup()
 {
 	if (!mIsShutDown)
 	{
@@ -425,24 +425,24 @@ void SDAServerApp::cleanup()
 		quit();
 	}
 }
-void SDAServerApp::mouseMove(MouseEvent event)
+void TransformFeedbackSmokeParticlesApp::mouseMove(MouseEvent event)
 {
 	
 }
-void SDAServerApp::mouseDown(MouseEvent event)
+void TransformFeedbackSmokeParticlesApp::mouseDown(MouseEvent event)
 {
 	
 }
-void SDAServerApp::mouseDrag(MouseEvent event)
+void TransformFeedbackSmokeParticlesApp::mouseDrag(MouseEvent event)
 {
 	
 }
-void SDAServerApp::mouseUp(MouseEvent event)
+void TransformFeedbackSmokeParticlesApp::mouseUp(MouseEvent event)
 {
 	
 }
 
-void SDAServerApp::keyDown(KeyEvent event)
+void TransformFeedbackSmokeParticlesApp::keyDown(KeyEvent event)
 {
 	
 		switch (event.getCode()) {
@@ -458,12 +458,12 @@ void SDAServerApp::keyDown(KeyEvent event)
 		}
 	
 }
-void SDAServerApp::keyUp(KeyEvent event)
+void TransformFeedbackSmokeParticlesApp::keyUp(KeyEvent event)
 {
 	
 }
 
-void SDAServerApp::draw()
+void TransformFeedbackSmokeParticlesApp::draw()
 {
 	gl::clear(Color::black());
 
@@ -513,4 +513,4 @@ void prepareSettings(App::Settings *settings)
 	settings->setWindowSize(640, 480);
 }
 
-CINDER_APP(SDAServerApp, RendererGl, prepareSettings)
+CINDER_APP(TransformFeedbackSmokeParticlesApp, RendererGl, prepareSettings)

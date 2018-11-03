@@ -80,9 +80,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\SDAServerApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClInclude Include="..\include\Resources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -278,5 +275,10 @@
     <Xml Include="build\Win32\Release\SDASettings.xml">
       <Filter>release</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\TransformFeedbackSmokeParticlesApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
